@@ -47,19 +47,19 @@ const App = () => {
 
 
   const renderItem =({item})=>(
-        <View style={{padding : 10,borderWidth:1,borderRadius:5,borderColor:'gray',margin:10}}>
-          <Text style={{fontSize:16,fontWeight:'bold',padding:5}}>Name :  {item.name}</Text>
-          <Text style={{fontSize:16,fontWeight:'bold',padding:5}}>rollno :  {item.rollno}</Text>
-          <Text style={{fontSize:16,fontWeight:'bold',padding:5}}>grade :  {item.grade}</Text>
+        <View style={styles.listContainer}>
+          <Text style={styles.text}>Name :  {item.name}</Text>
+          <Text style={styles.text}>rollno :  {item.rollno}</Text>
+          <Text style={styles.text}>grade :  {item.grade}</Text>
 
           <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-            <TouchableOpacity style={{padding:10,borderWidth:1,borderRadius:5,backgroundColor:'blue',margin:5}} onPress={()=>onEdit(item)}>
+            <TouchableOpacity style={styles.button} onPress={()=>onEdit(item)}>
               <Text style={{fontSize:16,fontWeight:'bold'}}>
                 Edit
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{padding:10,borderWidth:1,borderRadius:5,backgroundColor:'red',margin:5}} onPress={()=>onDelete(item.id)}>
-              <Text style={{fontSize:16,fontWeight:'bold'}}>
+            <TouchableOpacity style={styles.button} onPress={()=>onDelete(item.id)}>
+              <Text style={styles.buttonText}>
                 Delete
               </Text>
             </TouchableOpacity>
@@ -70,28 +70,27 @@ const App = () => {
   );
 
   return (
-    <SafeAreaView style={{flex:1,}}>
-      <View style={{flex:1,padding:10}}>
+    <SafeAreaView style={styles.mainContainer}>
+      <View style={styles.inputContainer}>
             <TextInput 
-            style={{padding:15,borderRadius:5,borderWidth:1,borderColor:'gray',margin:10}}
+            style={styles.input}
             placeholder='enter name'
             value={data.name}
             onChangeText={(name)=>setData({...data,name : name})}/>
-
             <TextInput 
-            style={{padding:15,borderRadius:5,borderWidth:1,borderColor:'gray',margin:10}}
+            style={styles.input}
             placeholder='enter rollno'
             value={data.rollno}
             onChangeText={(rollno)=>setData({...data,rollno : rollno})}/>
 
             <TextInput 
-            style={{padding:15,borderRadius:5,borderWidth:1,borderColor:'gray',margin:10}}
+            style={styles.input}
             placeholder='enter grade'
             value={data.grade}
             onChangeText={(grade)=>setData({...data,grade : grade})}/>
 
-            <TouchableOpacity style={{padding:10,borderWidth:1,borderRadius:5,backgroundColor:'blue',margin:5}} onPress={()=>onSubmit()}>
-              <Text style={{textAlign:'center'}}>{data.id ? "Update Student": "Add Student"}</Text>
+            <TouchableOpacity style={styles.button} onPress={()=>onSubmit()}>
+              <Text style={styles.buttonText}>{data.id ? "Update Student": "Add Student"}</Text>
             </TouchableOpacity>
 
             <FlatList 
@@ -110,7 +109,15 @@ const App = () => {
   );
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  mainContainer : {flex:1,},
+  inputContainer : {flex:1,padding:10},
+  input : {padding:15,borderRadius:5,borderWidth:1,borderColor:'gray',margin:10},
+  button : {padding:10,borderWidth:1,borderRadius:5,backgroundColor:'blue',margin:5},
+  buttonText : {textAlign:'center',fontSize :18,fontWeight:'bold'},
+  text: {fontSize:16,fontWeight:'bold',padding:5},
+  listContainer : {padding : 10,borderWidth:1,borderRadius:5,borderColor:'gray',margin:10},
+})
 
 export default App;
 
